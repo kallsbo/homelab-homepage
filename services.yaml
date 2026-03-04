@@ -332,4 +332,5 @@
                 - field: totalUnHealthy
                   label: Unhealthy
                   format: number
-     
+
+- Media Status:
