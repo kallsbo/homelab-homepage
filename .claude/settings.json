@@ -8,7 +8,15 @@
       "Bash(git remote add origin https://github.com/kallsbo/homelab-homepage.git)",
       "Bash(git push -u origin main)",
       "Read(//config/.ssh/**)",
-      "Bash(git add .gitignore .claude/)"
+      "Bash(git add .gitignore .claude/)",
+      "Bash(git push origin main)",
+      "Bash(git remote set-url origin git@github.com:kallsbo/homelab-homepage.git)",
+      "Bash(git remote remove homelab-homepage)",
+      "Bash(git branch --set-upstream-to=origin/main main)"
+    ],
+    "additionalDirectories": [
+      "/config/.claude/projects/-config-workspace-homepage",
+      "/config/workspace/homepage/.claude"
     ]
   }
 }
