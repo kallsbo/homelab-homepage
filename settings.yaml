@@ -88,8 +88,17 @@ layout:
   AI:
     tab: Home
 
+  Developer:
+    tab: Home
+  Social:
+    tab: Home
+  Tools:
+    tab: Home
+  Config & Management:
+    tab: Home
+
   Media Status:
-    tab: mediastatus
+    tab: Media Status
       
         
 
