@@ -13,6 +13,7 @@ providers:
 
 layout:
   Home Automation:
+    tab: Home
     style: row
     columns: 4
     useEqualHeights: true
@@ -42,16 +43,19 @@ layout:
       useEqualHeights: true
 
   Media:
+    tab: Home
     useEqualHeights: true
     style: row
     columns: 4
 
   Torrents:
+    tab: Home
     style: row
     columns: 2
     useEqualHeights: true
 
   TbT:
+    tab: Home
     style: row
     columns: 2
     header: false
@@ -80,4 +84,9 @@ layout:
       columns: 2
 
   Automation:
+    tab: Home
   AI:
+    tab: Home
+
+  Media Status:
+    tab: Media Status
