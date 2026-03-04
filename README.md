@@ -1,6 +1,6 @@
 # homelab-homepage
 
-Configuration files for the [gethomepage/homepage](https://gethomepage.dev) dashboard running at `https://homepage.fua.nu`.
+Configuration files for the [gethomepage/homepage](https://gethomepage.dev) dashboard running at `https://fua.nu`.
 
 ## Stack
 
