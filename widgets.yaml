@@ -1,0 +1,58 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/configs/info-widgets/
+
+# - unifi_console:
+#     url: https://192.168.6.1
+#     key: 6tUVUv4tCAkivVDjq54LuuPBD_5kqwPk
+
+# - unifi_console:
+#     url: https://192.168.250.1
+#     key: F9zvkouJFYzlcW6pTf9Tdef2bzjuiiTD
+    
+# - resources:
+#     label: System
+#     cpu: true
+#     memory: true
+#     uptime: true
+    
+# - resources:
+#     label: Temp
+#     cputemp: true
+#     tempmin: 0 # optional, minimum cpu temp
+#     tempmax: 100 # optional, maximum cpu temp
+#     units: metric # only used by cpu temp, options: 'imperial' or 'metric'
+
+# - resources:
+#     label: Disk
+#     disk: /
+#     expanded: true
+    
+# - resources:
+#     label: Network
+#     network: true # optional, uses 'default' if true or specify a network interface name
+
+- search:
+    provider: google
+    target: _blank
+    showSearchSuggestions: true
+    fullwidth: true
+
+- datetime:
+    text_size: xl
+    locale: sv
+    format:
+        dateStyle: short
+        timeStyle: short
+
+- openmeteo:
+    label: Tjörn # optional
+    latitude: 58.00354364719673
+    longitude: 11.663169137587158
+    timezone: Europe/Stockholm # optional
+    units: metric # or imperial
+    cache: 5 # Time in minutes to cache API responses, to stay within limits
+    format: # optional, Intl.NumberFormat options
+      maximumFractionDigits: 1
+
+

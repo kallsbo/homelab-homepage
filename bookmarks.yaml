@@ -1,0 +1,52 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/configs/bookmarks
+
+- Developer:
+    - Github:
+        - abbr: GH
+          href: https://github.com/
+
+- Social:
+    - Reddit:
+        - abbr: RE
+          href: https://reddit.com/
+
+- Tools:
+    - IT-Tools:
+      - icon: it-tools.png
+        href: https://it-tools.fua.nu
+    - Yaade:
+      - icon: yaade.png
+        href: https://yaade.fua.nu
+        description: Postman online
+    - MakeMKV:
+      - icon: makemkv.png
+        href: https://makemkv.fua.nu
+        description: Rip/convert disc images to MKV
+    - MKVToolNix:
+      - icon: mkvtoolnix.png
+        href: https://mkvtoolnix.fua.nu
+        description: Merge/split/edit MKV files (lossless)
+
+
+- Config & Management:
+    - Edit homepage config files:
+      - icon: vscode.png
+        href: https://vscode.fua.nu/?folder=/config/workspace/homepage
+    - Edit docker compose files:
+      - icon: vscode.png
+        href: https://vscode.fua.nu/?folder=/config/workspace/compose
+    - Edit Home Assistant config files:
+      - icon: vscode.png
+        href: https://vscode.fua.nu/?folder=/config/workspace/homeassistant
+    - Portainer:
+      - icon: portainer.png
+        href: https://portainer.fua.nu
+    - Dozzle:
+      - icon: dozzle.png
+        href: https://dozzle.fua.nu
+        description: Container logs
+    - SSH Bastion:
+      - icon: termix.png
+        href: https://termix.fua.nu

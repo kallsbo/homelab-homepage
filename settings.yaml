@@ -1,0 +1,88 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/configs/settings/
+
+title: FUA.NU
+
+headerStyle: boxedWidgets
+disableCollapse: true
+
+providers:
+  openweathermap: openweathermapapikey
+  weatherapi: weatherapiapikey
+
+layout:
+  Home Automation:
+    style: row
+    columns: 4
+    useEqualHeights: true
+
+    HA1:
+      style: row
+      columns: 1
+      header: false
+      useEqualHeights: true
+    
+    HA2:
+      style: row
+      columns: 1
+      header: false
+      useEqualHeights: true
+      
+    HA3:
+      style: row
+      columns: 1
+      header: false
+      useEqualHeights: true
+    
+    HA4: 
+      style: row
+      columns: 2
+      header: false
+      useEqualHeights: true
+
+  Media:
+    useEqualHeights: true
+    style: row
+    columns: 4  
+
+  Torrents:
+    style: row
+    columns: 2 
+    useEqualHeights: true
+    
+  TbT:
+    style: row
+    columns: 2
+    header: false
+
+    Infrastructure:
+      Docker:
+        style: row
+        columns: 2
+        header: false
+        
+      NASnTunnel:
+        style: row
+        columns: 2
+        header: false
+      
+      UDMS:
+        style: row
+        columns: 2
+        header: false
+      
+      CloudflareTunnel:
+        header: false
+  
+    Monitoring:
+      style: row
+      columns: 2
+  
+  Automation:
+  AI:
+      
+        
+
+
+      

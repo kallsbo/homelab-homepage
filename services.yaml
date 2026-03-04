@@ -1,0 +1,335 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/configs/services/
+
+- Home Automation:
+  - HA1:
+    - Temperature:
+        description: Temperatures
+        icon: "mdi-thermometer-lines-#e53935"
+        widget:
+          type: customapi
+          url: http://192.168.3.40:8123/api/template
+          method: POST
+          headers:
+            Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJmMGJjNDI0YTFlMTg0YjIwYTg2ZGVmNzc1M2YzNzlhOCIsImlhdCI6MTc2MTgzMTMxNCwiZXhwIjoyMDc3MTkxMzE0fQ.PxJo-gUl10PUEX3yMN9TGWVPV9ph9Tm6mj48GBLLN0c
+            Content-Type: application/json
+          requestBody:
+            template: |
+              {
+                "ute": {{ states('sensor.shelly1_f4cfa2e5e315_temperature') | tojson }},
+                "basement": {{ states('sensor.shelly1_f4cfa2e5e315_temperature_3') | tojson }},
+                "livingroom": {{ states('sensor.luftpump_indoor_temperature') | tojson }},
+                "luftpump_set": {{ state_attr('climate.luftpump', 'temperature') | tojson }}
+              }
+          mappings:
+            - field: ute
+              label: Outside
+              prefix: 🌡
+              suffix: °C
+            - field: basement
+              label: Basement
+              prefix: 🌡
+              suffix: °C
+            - field: livingroom
+              label: Livingroom
+              prefix: 🌡
+              suffix: °C
+            - field: luftpump_set
+              label: Target
+              prefix: 🌡
+              suffix: °C
+
+  - HA2:   
+    - Solar:
+        description: Solar system
+        icon: "mdi-solar-power-variant-#ffca28"
+        widget:
+          type: customapi
+          url: http://192.168.3.40:8123/api/template
+          method: POST
+          headers:
+            Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJmMGJjNDI0YTFlMTg0YjIwYTg2ZGVmNzc1M2YzNzlhOCIsImlhdCI6MTc2MTgzMTMxNCwiZXhwIjoyMDc3MTkxMzE0fQ.PxJo-gUl10PUEX3yMN9TGWVPV9ph9Tm6mj48GBLLN0c
+            Content-Type: application/json
+          requestBody:
+            template: |
+              {
+                "battery": {{ states('sensor.fsp_ne_163447792_state_of_charge') | tojson }},
+                "pv_output": {{ (states('sensor.fsp_ne_163447768_flow_solar_power') ~ 'kW') | tojson }},
+                "consumtion": {{ (states('sensor.fsp_ne_163447768_flow_load_power') ~ 'kW') | tojson }},
+                "battery_consumtion": {{ (states('sensor.fsp_ne_163447768_flow_battery_power') ~ 'kW') | tojson }},
+                "todays_income": {{ (states('sensor.fsp_ne_163447768_today_income') ~ 'kr') | tojson }}
+              }
+          mappings:
+            - field: battery
+              label: Battery
+              format: percent
+            - field: pv_output
+              label: panels
+            - field: consumtion
+              label: consumtion
+            - field: todays_income
+              label: Income 
+            
+  - HA3:      
+    - Roborock Qrevo:
+        description: Vacuum robot
+        icon: /icons/roborock.png
+        widget:
+          type: customapi
+          url: http://192.168.3.40:8123/api/template
+          method: POST
+          headers:
+            Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJmMGJjNDI0YTFlMTg0YjIwYTg2ZGVmNzc1M2YzNzlhOCIsImlhdCI6MTc2MTgzMTMxNCwiZXhwIjoyMDc3MTkxMzE0fQ.PxJo-gUl10PUEX3yMN9TGWVPV9ph9Tm6mj48GBLLN0c
+            Content-Type: application/json
+          requestBody:
+            template: |
+              {
+                "status": {{ states('sensor.roborock_qrevo_status') | tojson }},
+                "dock": {{ states('sensor.roborock_qrevo_dock_dockningsfel') | tojson }},
+                "battery": {{ (states('sensor.roborock_qrevo_batteri') ~ '%') | tojson }},
+                "last_clean": {{ states('sensor.roborock_qrevo_sluttid_for_senaste_stadningen') | tojson }}
+              }
+          mappings:
+            - field: status
+              label: Status
+              remap:
+                - value: charging
+                  to: 🔋
+                - value: idle
+                  to: ⏳
+                - value: cleaning
+                  to: 🧹
+                - value: washing_the_mop
+                  to: 🚿
+                - value: charger_disconnected
+                  to: ❌🔌
+            - field: dock
+              label: Dock
+              remap:
+                - value: ok
+                  to: ✅
+                - value: waste_water_tank_full
+                  to: 💩
+                - value: water_empty
+                  to: 🚱
+                - value: duct_blockage
+                  to: ❌🌬️
+            - field: battery
+              label: Battery
+            - field: last_clean
+              label: Last clean
+              format: relativeDate
+
+  - HA4: 
+    - Sector Alarm:
+        description: Alarm system
+        icon: /icons/sector-alarm.png
+        widget:
+          type: customapi
+          url: http://192.168.3.40:8123/api/template
+          method: POST
+          headers:
+            Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJmMGJjNDI0YTFlMTg0YjIwYTg2ZGVmNzc1M2YzNzlhOCIsImlhdCI6MTc2MTgzMTMxNCwiZXhwIjoyMDc3MTkxMzE0fQ.PxJo-gUl10PUEX3yMN9TGWVPV9ph9Tm6mj48GBLLN0c
+            Content-Type: application/json
+          requestBody: 
+            template: |
+              {% set ts = state_attr('input_datetime.sector_alarm_true_change','timestamp') %}
+              {
+                "status": {{ states('input_select.sector_alarm_true_status') | tojson }},
+                "changed_iso": {{ ((ts | as_datetime | as_local).isoformat() if ts is not none else none) | tojson }}
+              }
+          mappings:
+            - field: status
+              remap: 
+                - value: disarmed
+                  to: Disarmed
+                - value: armed_away
+                  to: Fully armed
+                - value: armed_home
+                  to: Perimeter armed
+            - field: changed_iso
+              format: relativeDate
+
+    - Home Assistant:
+        description: Home automation
+        icon: home-assistant.png
+        href: https://homeassistant.fua.nu
+        server: local-docker
+        container: homeassistant
+        siteMonitor: http://192.168.3.40:8123
+        widget:
+          type: homeassistant
+          url: http://192.168.3.40:8123
+          key: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJmMGJjNDI0YTFlMTg0YjIwYTg2ZGVmNzc1M2YzNzlhOCIsImlhdCI6MTc2MTgzMTMxNCwiZXhwIjoyMDc3MTkxMzE0fQ.PxJo-gUl10PUEX3yMN9TGWVPV9ph9Tm6mj48GBLLN0c
+          custom:
+            - template: "{{ relative_time(states('sensor.backup_last_successful_automatic_backup') | as_datetime) ~ ' ago' }}"
+              label: Last backup
+
+- Media:
+  - Plex:
+      description: Media server
+      icon: plex.png
+      href: https://plex.fua.nu
+      siteMonitor: http://192.168.6.6:32400
+      weight: 1
+      widget:
+          type: plex
+          url: http://192.168.6.6:32400
+          key: A_5ai-fy6-x8MZyMAtLh # see https://www.plexopedia.com/plex-media-server/general/plex-token/
+          fields: ["movies", "tv"]
+
+- Torrents:
+  - Superbits:
+      id: superbits
+      description: Superbits.org - Sveriges största bittorrent tracker
+      icon: the-pirate-bay.png
+      href: https://login.superbits.org/user/60688/klyra
+      widgets:
+        - type: customapi
+          url: http://n8n:5678/webhook/superbits?userStats=true
+          method: GET
+          refreshInterval: 20000
+          headers:
+            x-token: oo7v8J2fXrbLqmBEYAA2TZDmuz3tezPj7Vl5e5CiPmk3skdmsm2Madp1P9YyqJEm
+          mappings:
+            - field: userStats.warned
+              label: Warned
+              format: String
+              remap:
+              - value: no
+                to: ✅
+              - any: true # will map all other values
+                to: ⛔
+            - field: userStats.ratio.pretty
+              label: Ratio
+              format: string
+            - field: userStats.downloaded.human
+              label: Downloaded
+              format: string
+            - field: userStats.uploaded.human
+              label: Uploaded
+              format: string
+            - field: userStats.last_access
+              label: Last Access
+              format: relativeDate
+
+        - type: customapi
+          url: http://n8n:5678/webhook/superbits?userInfo=true
+          method: GET
+          refreshInterval: 20000
+          headers:
+            x-token: oo7v8J2fXrbLqmBEYAA2TZDmuz3tezPj7Vl5e5CiPmk3skdmsm2Madp1P9YyqJEm
+          mappings:
+            - field: user.bonuspoang
+              label: Bonus
+              format: number
+            - field: user.leechbonus
+              label: Leech Bonus
+              format: percent
+            - field: user.last_access
+              label: Last Access
+              format: relativeDate
+
+        - type: customapi
+          url: http://n8n:5678/webhook/superbits?userStatus=true
+          method: GET
+          refreshInterval: 20000
+          headers:
+            x-token: oo7v8J2fXrbLqmBEYAA2TZDmuz3tezPj7Vl5e5CiPmk3skdmsm2Madp1P9YyqJEm
+          mappings:
+            - field: user.hnrwarns
+              label: HnR Warnings
+              format: number
+            - field: user.notifs.length
+              label: Notifications
+              format: number
+
+        - type: customapi
+          url: http://n8n:5678/webhook/superbits?HnRInfo=true
+          method: GET
+          refreshInterval: 20000
+          headers:
+            x-token: oo7v8J2fXrbLqmBEYAA2TZDmuz3tezPj7Vl5e5CiPmk3skdmsm2Madp1P9YyqJEm
+          display: dynamic-list
+          mappings:
+            items: HnR
+            name: nameSlug
+            label: statusSlug
+
+- TbT:
+  - Infrastructure:
+      - NASnTunnel:
+        - KRDS920:
+            icon: ugreen-nas.png
+            description: NAS
+            href: https://nas.fua.nu
+            siteMonitor: http://192.168.6.6:5000
+            widget:
+                type: diskstation
+                url: http://192.168.6.6:5000
+                username: homepage
+                password: 4<.,$t
+                volume: volume_1 # optional
+
+        - Lirås Cloudflare tunnel:
+            icon: cloudflare.png
+            description: Lirås 36 - FUA.NU - Public access tunnel
+            server: local-docker
+            container: cloudflare-tunnel
+            widget:
+              type: cloudflared
+              accountid: ec09c063ccf0681861553a3e922aa5db # from zero trust dashboard url e.g. https://one.dash.cloudflare.com/<accountid>/home/quick-start
+              tunnelid: 97521e5f-b64b-48a0-8235-7bf9321f3b23 # found in tunnels dashboard under the tunnel name
+              key: QYPAumFbQNFR6u6LPRF1W8XSICdKU2JKtun7eWPu # api token with `Account.Cloudflare Tunnel:Read` https://dash.cloudflare.com/profile/api-tokens
+
+      - UDMS:
+          - Lirås:
+              icon: unifi.png
+              description: Lirås 36 UDM
+              href: https://unifi.ui.com
+              siteMonitor: https://192.168.6.1
+              weight: 1
+              widget:
+                  type: unifi
+                  url: https://192.168.6.1
+                  key: 6tUVUv4tCAkivVDjq54LuuPBD_5kqwPk
+
+          - Södra Hamnen:
+              icon: unifi.png
+              description: Södra Hamnen 10 UDM
+              href: https://unifi.ui.com
+              siteMonitor: https://192.168.250.1
+              widget:
+                  type: unifi
+                  url: https://192.168.250.1
+                  key: F9zvkouJFYzlcW6pTf9Tdef2bzjuiiTD
+   
+  - Monitoring:
+    - Docker:
+        icon: docker.png
+        description: Docker containers
+        siteMonitor: http://dockerproxy:2375
+        href: https://portainer.fua.nu
+        weight: 1
+        widgets:
+            - type: customapi
+              url: http://n8n:5678/webhook/docker/stats?fields=Name
+              method: GET
+              headers:
+                x-token: oo7v8J2fXrbLqmBEYAA2TZDmuz3tezPj7Vl5e5CiPmk3skdmsm2Madp1P9YyqJEm
+              display: block
+              mappings:
+                - field: totalContainers
+                  label: Containers
+                  format: number
+                - field: totalRunning
+                  label: Running
+                  format: number
+                - field: totalHealthy
+                  label: Healthy
+                  format: number
+                - field: totalUnHealthy
+                  label: Unhealthy
+                  format: number
+     

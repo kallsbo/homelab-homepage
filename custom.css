@@ -1,0 +1,22 @@
+div:has(> .services-group.subgroup) {
+  row-gap: 0;
+}
+
+/* Target the slug line inside the Superbits and Deluge cards */
+li#superbits .flex.flex-row.text-right > .font-bold,
+li#deluge .flex.flex-row.text-right > .font-bold {
+  /* keep your NBSP/figure spaces/tabs intact */
+  white-space: pre;
+
+  /* equal-width digits in supported fonts */
+  font-variant-numeric: tabular-nums lining-nums;
+  font-feature-settings: "tnum" 1, "lnum" 1; /* Safari/older engines */
+
+  /* fallback for themes without tabular digits */
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+               "Liberation Mono", "Courier New", monospace;
+
+  /* optional: avoid tiny shifts with emoji */
+  display: inline-block;
+}
+
