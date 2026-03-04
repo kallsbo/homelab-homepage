@@ -13,7 +13,6 @@ providers:
 
 layout:
   Home Automation:
-    tab: Home
     style: row
     columns: 4
     useEqualHeights: true
@@ -23,39 +22,36 @@ layout:
       columns: 1
       header: false
       useEqualHeights: true
-    
+
     HA2:
       style: row
       columns: 1
       header: false
       useEqualHeights: true
-      
+
     HA3:
       style: row
       columns: 1
       header: false
       useEqualHeights: true
-    
-    HA4: 
+
+    HA4:
       style: row
       columns: 2
       header: false
       useEqualHeights: true
 
   Media:
-    tab: Home
     useEqualHeights: true
     style: row
     columns: 4
 
   Torrents:
-    tab: Home
     style: row
     columns: 2
     useEqualHeights: true
 
   TbT:
-    tab: Home
     style: row
     columns: 2
     header: false
@@ -65,42 +61,23 @@ layout:
         style: row
         columns: 2
         header: false
-        
+
       NASnTunnel:
         style: row
         columns: 2
         header: false
-      
+
       UDMS:
         style: row
         columns: 2
         header: false
-      
+
       CloudflareTunnel:
         header: false
-  
+
     Monitoring:
       style: row
       columns: 2
-  
+
   Automation:
-    tab: Home
   AI:
-    tab: Home
-
-  Developer:
-    tab: Home
-  Social:
-    tab: Home
-  Tools:
-    tab: Home
-  Config & Management:
-    tab: Home
-
-  Media Status:
-    tab: Media Status
-      
-        
-
-
-      
