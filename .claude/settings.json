@@ -36,7 +36,10 @@
       "mcp__playwright__browser_handle_dialog",
       "mcp__playwright__browser_file_upload",
       "mcp__playwright__browser_install",
-      "mcp__playwright__browser_run_code"
+      "mcp__playwright__browser_run_code",
+      "WebFetch(domain:gethomepage.dev)",
+      "Bash(git:*)",
+      "Bash(git -C:*)"
     ],
     "additionalDirectories": [
       "/config/.claude/projects/-config-workspace-homepage",
