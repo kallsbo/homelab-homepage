@@ -1,7 +1,7 @@
-// Media Status deviation table injector
+// ─── Media Status deviation table ──────────────────────────────────────────
 // Fetches from the n8n webhook and injects an HTML table into li#media-diff.
-// NOTE: Update WEBHOOK_URL if n8n is not accessible at https://n8n.fua.nu
-(function () {
+// NOTE: Update WEBHOOK_URL if n8n is not accessible at https://automation.fua.nu
+(function mediaDiff() {
   var WEBHOOK_URL   = 'https://automation.fua.nu/webhook/d41a998b-ca19-4ee8-86fd-4cdf6b252391';
   var WEBHOOK_TOKEN = 'oo7v8J2fXrbLqmBEYAA2TZDmuz3tezPj7Vl5e5CiPmk3skdmsm2Madp1P9YyqJEm';
   var TABLE_ID      = 'media-diff-table';
