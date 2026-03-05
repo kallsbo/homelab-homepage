@@ -7,19 +7,11 @@
         - abbr: GH
           href: https://github.com/
 
-- Social:
-    - Reddit:
-        - abbr: RE
-          href: https://reddit.com/
-
-- Tools:
-    - IT-Tools:
-      - icon: it-tools.png
-        href: https://it-tools.fua.nu
-    - Yaade:
-      - icon: yaade.png
-        href: https://yaade.fua.nu
-        description: Postman online
+- Media Management:
+    - WatchState:
+      - icon: mdi-timer-play-outline
+        href: https://watchstate.fua.nu
+        description: Watch state sync Plex <-> Jellyfin
     - MakeMKV:
       - icon: makemkv.png
         href: https://makemkv.fua.nu
@@ -29,7 +21,15 @@
         href: https://mkvtoolnix.fua.nu
         description: Merge/split/edit MKV files (lossless)
 
-
+- Tools:
+    - IT-Tools:
+      - icon: it-tools.png
+        href: https://it-tools.fua.nu
+    - Yaade:
+      - icon: yaade.png
+        href: https://yaade.fua.nu
+        description: Postman online
+    
 - Config & Management:
     - Edit homepage config files:
       - icon: vscode.png
