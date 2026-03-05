@@ -39,7 +39,18 @@
       "mcp__playwright__browser_run_code",
       "WebFetch(domain:gethomepage.dev)",
       "Bash(git:*)",
-      "Bash(git -C:*)"
+      "Bash(git -C:*)",
+      "Bash(curl -s -H \"x-token: oo7v8J2fXrbLqmBEYAA2TZDmuz3tezPj7Vl5e5CiPmk3skdmsm2Madp1P9YyqJEm\" http://n8n:5678/webhook/d41a998b-ca19-4ee8-86fd-4cdf6b252391)",
+      "mcp__n8n__n8n_list_workflows",
+      "mcp__n8n__n8n_health_check",
+      "mcp__n8n__n8n_get_workflow",
+      "Bash(curl -s \"http://jellyfin:8096/Items?IncludeItemTypes=Movie&Recursive=true&Fields=ProviderIds&Limit=2&api_key=490b442d0e884d67be1784cc382d31d0\")",
+      "Bash(python3 -m json.tool)",
+      "Bash(curl -s \"http://jellyfin:8096/Items?IncludeItemTypes=Series&Recursive=true&Fields=ProviderIds&Limit=2&api_key=490b442d0e884d67be1784cc382d31d0\")",
+      "mcp__n8n__n8n_update_full_workflow",
+      "mcp__n8n__tools_documentation",
+      "Bash(docker exec homepage cat /app/config/custom.js)",
+      "Bash(docker ps --format '{{.Names}}')"
     ],
     "additionalDirectories": [
       "/config/.claude/projects/-config-workspace-homepage",

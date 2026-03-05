@@ -1,3 +1,40 @@
+/* Media Status deviation table */
+#media-diff-table {
+  width: 100%;
+  padding: 0.25rem 0;
+  overflow-x: auto;
+}
+.mdt {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.75rem;
+}
+.mdt th {
+  padding: 0.3rem 0.5rem;
+  border-bottom: 1px solid rgba(128,128,128,0.2);
+  font-size: 0.7rem;
+  font-weight: 600;
+  opacity: 0.6;
+  text-align: left;
+}
+.mdt td {
+  padding: 0.15rem 0.5rem;
+  border-bottom: 1px solid rgba(128,128,128,0.07);
+}
+.mdt-icon { text-align: center; }
+.mdt-type { text-align: center; }
+.mdt-title { max-width: 18rem; }
+.mdt-year { opacity: 0.6; font-size: 0.7rem; white-space: nowrap; }
+.mdt-yes { color: #4caf50; font-weight: bold; }
+.mdt-no  { color: #f44336; font-weight: bold; }
+.mdt-na  { opacity: 0.3; }
+.mdt-meta {
+  font-size: 0.65rem;
+  opacity: 0.4;
+  padding: 0.2rem 0.5rem;
+  margin: 0;
+}
+
 div:has(> .services-group.subgroup) {
   row-gap: 0;
 }

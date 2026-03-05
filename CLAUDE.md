@@ -59,8 +59,15 @@ All HA widgets call `http://192.168.3.40:8123/api/template` (POST) with a Jinja2
 
 ### n8n webhook proxy
 
-Some services (Superbits, Docker stats) fetch data from `http://n8n:5678/webhook/...` using a static `x-token` header. These are internal HTTP calls that go through an n8n automation server.
+Some services (Superbits, Docker stats, Media Status) fetch data from `http://n8n:5678/webhook/...` using a static `x-token` header. These are internal HTTP calls. The public-facing equivalent is `https://automation.fua.nu/webhook/...` (used by `custom.js` which runs in the browser).
 
 ### Service IDs
 
-A service can declare `id: <name>` to allow CSS targeting via `li#<name>`. Currently used for `#superbits` and `#deluge` in `custom.css` to apply monospace/tabular-nums styling to ratio columns.
+A service can declare `id: <name>` to allow CSS targeting via `li#<name>` and JS injection via `document.getElementById`. Currently used for:
+
+- `#superbits`, `#deluge` — monospace/tabular-nums styling for ratio columns
+- `#media-diff` — `custom.js` injects a deviation table fetched from the n8n webhook
+
+### custom.js — client-side injection
+
+`custom.js` uses a `MutationObserver` to wait for service card elements to appear in the DOM, then enhances them with richer HTML. The Media Status deviation table (`li#media-diff`) is built this way: it fetches `https://automation.fua.nu/webhook/d41a998b-...`, renders a `<table class="mdt">` listing each deviation with ✓/✗ columns for Radarr, Sonarr, Plex, and Jellyfin, and inserts it into the card. Styles live in `custom.css` under the `.mdt*` and `#media-diff-table` selectors.

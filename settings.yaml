@@ -91,4 +91,4 @@ layout:
   Media Status:
     tab: Media Status
     style: row
-    columns: 2
+    columns: 1

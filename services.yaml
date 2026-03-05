@@ -335,62 +335,29 @@
 
 
 - Media Status:
-  - Movies in Radarr, not in Plex:
-      icon: radarr.png
-      description: In Radarr but missing from Plex
-      widget:
-        type: customapi
-        url: http://n8n:5678/webhook/d41a998b-ca19-4ee8-86fd-4cdf6b252391
-        method: GET
-        headers:
-          x-token: oo7v8J2fXrbLqmBEYAA2TZDmuz3tezPj7Vl5e5CiPmk3skdmsm2Madp1P9YyqJEm
-        display: dynamic-list
-        mappings:
-          items: moviesInRadarrNotPlex
-          name: title
-          label: year
-
-  - Movies in Plex, not in Radarr:
+  - Media Deviations:
+      id: media-diff
       icon: plex.png
-      description: In Plex but not managed by Radarr
+      description: Items missing from one or more services
       widget:
         type: customapi
         url: http://n8n:5678/webhook/d41a998b-ca19-4ee8-86fd-4cdf6b252391
         method: GET
         headers:
           x-token: oo7v8J2fXrbLqmBEYAA2TZDmuz3tezPj7Vl5e5CiPmk3skdmsm2Madp1P9YyqJEm
-        display: dynamic-list
         mappings:
-          items: moviesInPlexNotRadarr
-          name: title
-          label: year
-
-  - Shows in Sonarr, not in Plex:
-      icon: sonarr.png
-      description: In Sonarr but missing from Plex
-      widget:
-        type: customapi
-        url: http://n8n:5678/webhook/d41a998b-ca19-4ee8-86fd-4cdf6b252391
-        method: GET
-        headers:
-          x-token: oo7v8J2fXrbLqmBEYAA2TZDmuz3tezPj7Vl5e5CiPmk3skdmsm2Madp1P9YyqJEm
-        display: dynamic-list
-        mappings:
-          items: showsInSonarrNotPlex
-          name: title
-          label: year
-
-  - Shows in Plex, not in Sonarr:
-      icon: plex.png
-      description: In Plex but not managed by Sonarr
-      widget:
-        type: customapi
-        url: http://n8n:5678/webhook/d41a998b-ca19-4ee8-86fd-4cdf6b252391
-        method: GET
-        headers:
-          x-token: oo7v8J2fXrbLqmBEYAA2TZDmuz3tezPj7Vl5e5CiPmk3skdmsm2Madp1P9YyqJEm
-        display: dynamic-list
-        mappings:
-          items: showsInPlexNotSonarr
-          name: title
-          label: year
+          - field: counts.deviations
+            label: Deviations
+            format: number
+          - field: counts.radarr
+            label: Radarr
+            format: number
+          - field: counts.sonarr
+            label: Sonarr
+            format: number
+          - field: counts.plexMovies
+            label: Plex movies
+            format: number
+          - field: counts.plexTv
+            label: Plex shows
+            format: number
