@@ -1,5 +1,6 @@
 ---
-Create a focused git commit and push for the current changes.
+description: Create a focused git commit and push for the current changes.
+---
 
 1. Run `git status` and `git diff` to understand what has changed
 2. Run `git log --oneline -5` to match the existing commit message style
@@ -8,4 +9,3 @@ Create a focused git commit and push for the current changes.
 5. Commit and push to remote
 
 Never mix unrelated file changes in one commit. If in doubt, ask.
----
