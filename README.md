@@ -7,7 +7,7 @@ Configuration files for the [gethomepage/homepage](https://gethomepage.dev) dash
 - **Homepage** — dashboard app (Docker container)
 - **Docker proxy** — `dockerproxy:2375` for container status badges
 - **Home Assistant** — `http://192.168.3.40:8123` for home automation widgets
-- **n8n** — `http://n8n:5678` webhook proxy for Superbits and Docker stats
+- **n8n** — `http://n8n:5678` webhook proxy for Superbits, Docker stats, and Media Status (public: `https://automation.fua.nu`)
 - **Cloudflare Tunnel** — public access via `fua.nu` domain
 
 ## Dashboard sections
@@ -16,6 +16,7 @@ Configuration files for the [gethomepage/homepage](https://gethomepage.dev) dash
 |---------|----------|
 | Home Automation | Temperature sensors, solar/battery system, Roborock vacuum, Sector Alarm, Home Assistant |
 | Media | Plex media server |
+| Media Status | Deviation table: items present in some but not all of Radarr, Sonarr, Plex, Jellyfin |
 | Torrents | Superbits tracker stats (ratio, HnR warnings, bonus points) |
 | TbT | Infrastructure (NAS, Cloudflare tunnel, UniFi UDMs) and Monitoring (Docker stats) |
 | Automation / AI | *(reserved)* |
@@ -29,8 +30,8 @@ Configuration files for the [gethomepage/homepage](https://gethomepage.dev) dash
 | `widgets.yaml` | Top bar widgets: search, clock, weather (Open-Meteo, Tjörn) |
 | `bookmarks.yaml` | Bookmark links |
 | `docker.yaml` | Docker socket/proxy connection (`local-docker`) |
-| `custom.css` | CSS overrides (monospace tabular-nums for ratio columns) |
-| `custom.js` | Custom JavaScript |
+| `custom.css` | CSS overrides: tabular-nums for ratio columns, `.mdt*` styles for Media Status table |
+| `custom.js` | Client-side injection: Media Status deviation table via `MutationObserver` + n8n webhook |
 
 ## Key patterns
 
@@ -68,9 +69,17 @@ Services with multiple independent widgets use the plural `widgets:` key (a list
 
 Add `server: local-docker` and `container: <name>` to any service to show a live container status badge.
 
-### Service CSS targeting
+### Service CSS/JS targeting
 
-A service with `id: myservice` can be targeted in `custom.css` via `li#myservice`.
+A service with `id: myservice` can be targeted in `custom.css` via `li#myservice` or enhanced via `document.getElementById('myservice')` in `custom.js`.
+
+Currently used:
+- `#superbits`, `#deluge` — monospace tabular-nums for ratio columns
+- `#media-diff` — `custom.js` fetches the n8n deviation webhook and injects a `<table class="mdt">` with ✓/✗ columns for Radarr, Sonarr, Plex, and Jellyfin
+
+### Media Status deviation table
+
+`custom.js` uses a `MutationObserver` to detect when `li#media-diff` is added to the DOM, then fetches `https://automation.fua.nu/webhook/d41a998b-...` and renders the response into an HTML table inside the card. The n8n workflow returns a `deviations` array (one entry per mismatched item) and a `counts` summary. Styles are defined in `custom.css` under `.mdt*` and `#media-diff-table`.
 
 ## Environment
 
