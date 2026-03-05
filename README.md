@@ -28,7 +28,7 @@ Configuration files for the [gethomepage/homepage](https://gethomepage.dev) dash
 | `settings.yaml` | Global settings, layout groups and column definitions |
 | `services.yaml` | Service cards and widgets — structure mirrors `settings.yaml` layout |
 | `widgets.yaml` | Top bar widgets: search, clock, weather (Open-Meteo, Tjörn) |
-| `bookmarks.yaml` | Bookmark links |
+| `bookmarks.yaml` | Bookmark links (Developer, Media Management, Tools, Config & Management) |
 | `docker.yaml` | Docker socket/proxy connection (`local-docker`) |
 | `custom.css` | CSS overrides: tabular-nums for ratio columns, `.mdt*` styles for Media Status table |
 | `custom.js` | Client-side injection: Media Status deviation table via `MutationObserver` + n8n webhook |
