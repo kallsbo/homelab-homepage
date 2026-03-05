@@ -21,9 +21,9 @@
 
     var rows = deviations.map(function (d) {
       return '<tr>'
+        + '<td class="mdt-type">'  + (d.type === 'movie' ? '\uD83C\uDFAC' : '\uD83D\uDCFA') + '</td>'
         + '<td class="mdt-title">' + (d.title || '?') + '</td>'
         + '<td class="mdt-year">'  + (d.year  || '')  + '</td>'
-        + '<td class="mdt-type">'  + (d.type === 'movie' ? '\uD83C\uDFAC' : '\uD83D\uDCFA') + '</td>'
         + '<td class="mdt-icon">'  + icon(d.radarr)   + '</td>'
         + '<td class="mdt-icon">'  + icon(d.sonarr)   + '</td>'
         + '<td class="mdt-icon">'  + icon(d.plex)     + '</td>'
@@ -34,10 +34,10 @@
     return '<div id="' + TABLE_ID + '">'
       + '<p class="mdt-meta">' + deviations.length + ' deviations' + cacheLine + '</p>'
       + '<table class="mdt"><thead><tr>'
+      + '<th></th>'
       + '<th class="mdt-title">Title</th>'
       + '<th class="mdt-year">Year</th>'
-      + '<th></th>'
-      + '<th>Radarr</th><th>Sonarr</th><th>Plex</th><th>Jellyfin</th>'
+      + '<th class="mdt-icon">Radarr</th><th class="mdt-icon">Sonarr</th><th class="mdt-icon">Plex</th><th class="mdt-icon">Jellyfin</th>'
       + '</tr></thead><tbody>' + rows + '</tbody></table>'
       + '</div>';
   }
